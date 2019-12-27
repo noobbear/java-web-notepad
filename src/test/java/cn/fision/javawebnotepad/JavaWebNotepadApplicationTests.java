@@ -17,8 +17,8 @@ class JavaWebNotepadApplicationTests {
 
     @Test
     void contextLoads() {
-        //int i =mapper.insertOne("demo", DigestUtils.md5DigestAsHex("123456".getBytes()),"demoQAQ");
-        //System.out.println(i);
+        int i =mapper.insertOne("demo2", DigestUtils.md5DigestAsHex("123456".getBytes()),"demoQAQ");
+        System.out.println(i);
         List<User> all = mapper.findAll();
         System.out.println(all.toString());
     }

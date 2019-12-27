@@ -23,6 +23,9 @@ public interface UserMapper {
     @Select("select * from user")
     List<User> findAll();
 
+    @Select("select * from user where id = #{id}")
+    User findById(int id);
+
     @Insert("insert into user(username,password,nickname) values(#{username},#{password},#{nickname})")
     Integer insertOne(String username,String password,String nickname);
 

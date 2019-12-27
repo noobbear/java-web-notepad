@@ -20,7 +20,7 @@ import java.util.List;
 @Mapper
 @Repository
 public interface UserMapper {
-    @Select("select * from user")
+    @Select("select * from user order by id desc")
     List<User> findAll();
 
     @Select("select * from user where id = #{id}")

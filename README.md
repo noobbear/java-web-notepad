@@ -33,8 +33,8 @@
        暂不提供用户注册功能，如需注册，可执行JavaWebNotepadApplicationTests中的addUser测试方法，自行修改用户名和密码
 
 ### 截图
-    登录页
-    ![登录页](截图/login.PNG)
+  登录页
+  ![登录页](截图/login.PNG)
 
-    主页
-    ![主页](截图/index.PNG)
+  主页
+  ![主页](截图/index.PNG)

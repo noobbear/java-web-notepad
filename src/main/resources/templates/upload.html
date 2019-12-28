@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8" />
+		<title>JAVA Web 记事本</title>
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache,must-revalidate">
+		<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	</head>
+	<body>
+		<div class="container">
+			<form id="gamemAddForm" method="post" class="form-horizontal" role="form" onsubmit="postNote(event)">
+				
+				<div class="form-group">
+					<div class="col-sm-10">
+						<input type="text" name="title" id="title" class="form-control" placeholder="标题" maxlength="50">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-10">
+						<div id="editor"></div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-5">
+						<input type="submit" name="submit" class="form-control">
+					</div>
+				</div>
+			</form>
+		</div>
+	</body>
+</html>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://cdn.bootcss.com/wangEditor/10.0.13/wangEditor.min.js"></script>
+<!--<script src="https://cdn.bootcss.com/js-cookie/latest/js.cookie.js"></script>-->
+<script src="https://cdn.bootcss.com/sweetalert/2.1.2/sweetalert.min.js"></script>
+<script type="text/javascript" src="/js/upload.js" ></script>
+<script type="text/javascript" src="/js/common.js" ></script>

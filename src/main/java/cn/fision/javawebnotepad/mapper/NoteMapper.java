@@ -26,7 +26,7 @@ public interface NoteMapper {
     @Select("select * from note where id = #{id}")
     Note findById(int id);
 
-    @Select("select * from note where userId = #{userId order by id desc}")
+    @Select("select * from note where userId = #{userId} order by id desc")
     List<Note> findByUserId(int userId);
 
     @Select("select * from note where userId = #{userId} and title = #{title} and createTime = #{createTime}")

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8" />
+		<title>JAVA Web 记事本</title>
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache,must-revalidate">
+	</head>
+	<body>
+	<div class="container">
+		<form id="gamemAddForm" method="post" class="form-horizontal" role="form" onsubmit="updateNote(event)">
+			<div class="form-group">
+				<div class="col-sm-10">
+					<input type="hidden" name="id" id="id" class="form-control" placeholder="id" th:value="${note.id}">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-10">
+					<input type="hidden" name="userId" id="userId" class="form-control" placeholder="userId"
+						   th:value="${note.userId}">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-10">
+					创建时间：<input type="text" name="createTime" id="createTime" class="form-control"
+								placeholder="createTime" th:value="${#dates.format(note.createTime, 'yyyy-MM-dd HH:mm:ss')}" readonly="readonly">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-10">
+					上次更新时间：<input type="text" name="updateTime" id="updateTime" class="form-control"
+								  placeholder="updateTime" th:value="${#dates.format(note.updateTime, 'yyyy-MM-dd HH:mm:ss')}" readonly="readonly">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-10">
+					标题:<input type="text" name="title" id="title" class="form-control" placeholder="标题" th:value="${note.title}" maxlength="50">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-10">
+					<div id="editor"></div>
+					<div id="tmpcontent">[[${note.content}]]</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-5">
+					<input type="submit" name="submit" class="form-control">
+				</div>
+			</div>
+		</form>
+	</div>
+	</body>
+</html>
+<script src="https://cdn.bootcss.com/sweetalert/2.1.2/sweetalert.min.js"></script>
+<script src="https://cdn.bootcss.com/js-cookie/latest/js.cookie.js"></script>
+<script type="text/javascript" src="/js/upload.js" ></script>
+<script type="application/javascript" src="/js/common.js"></script>

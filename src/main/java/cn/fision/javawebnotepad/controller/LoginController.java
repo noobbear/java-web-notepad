@@ -8,6 +8,7 @@ import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotBlank;
 
 /**
@@ -23,13 +24,14 @@ public class LoginController {
     private UserService userService;
 
     @PostMapping("/user/login")
-    public JsonResult login(@NotBlank String username, @NotBlank String password){
+    public JsonResult login(@NotBlank String username, @NotBlank String password, HttpServletRequest req){
         User user = userService.findByUserName(username);
         if (user==null)
             return JsonResult.build(-1,"用户名或密码错误");
         String pwd = DigestUtils.md5DigestAsHex(password.getBytes());
-        if (pwd.equals(user.getPassword()))
-            return JsonResult.ok(user);
+        if (pwd.equals(user.getPassword())){
+            req.getSession().setAttribute("user",user);
+            return JsonResult.ok(user);}
         else
             return JsonResult.build(-1,"用户名或密码错误");
     }

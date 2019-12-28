@@ -8,6 +8,7 @@ import cn.fision.javawebnotepad.mapper.UserMapper;
 import cn.fision.javawebnotepad.service.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
@@ -51,11 +52,14 @@ public class NoteServiceImpl implements NoteService {
 
     @Override
     public JsonResult insertOne(int userId, @NotBlank Note note) {
-        User user = userMapper.findById(userId);
+        User user = userMapper.findById(userId);//再次校验用户
         String msg = "";
         if (user!=null) {
-            Integer id = noteMapper.insertOne(note.getUserId(),note.getTitle(),note.getContent(),note.getCreateTime(),note.getUpdateTime());
-            if (id!=null&&id > 0){
+            if(StringUtils.isEmpty(note.getTitle().trim()))
+               return JsonResult.build(-1,"标题不能为空");
+            //Integer id = noteMapper.insertOne(userId,note.getTitle(),note.getContent(),note.getCreateTime(),note.getUpdateTime());
+            Integer rs = noteMapper.insertOneByExample(note);//note携带了id
+            if (rs!=null&&rs == 1){
                 return JsonResult.ok(note);
             }
             msg = "保存失败！";

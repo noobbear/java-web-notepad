@@ -75,4 +75,11 @@ class JavaWebNotepadApplicationTests {
         //2019-12-27 16:54:21
             System.out.println(noteMapper.findBy(1, "测试22", "2019-12-27 16:54:21"));
     }
+
+    @Test
+    void addUser(){
+        //mapper.insertOne("用户名", DigestUtils.md5DigestAsHex("密码".getBytes()),"昵称");
+        int i =mapper.insertOne("demo2", DigestUtils.md5DigestAsHex("123456".getBytes()),"demoQAQ");
+        System.out.println(i);//i==1证明成功
+    }
 }

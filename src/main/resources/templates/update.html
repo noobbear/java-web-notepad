@@ -8,6 +8,13 @@
 	</head>
 	<body>
 	<div class="container">
+		<div class="form-horizontal">
+			<div class="form-group">
+				<div class="col-sm-5">
+					<button  id="delete" class="form-control" onclick="deleteNote(this)">刪除</button>
+				</div>
+			</div>
+		</div>
 		<form id="gamemAddForm" method="post" class="form-horizontal" role="form" onsubmit="updateNote(event)">
 			<div class="form-group">
 				<div class="col-sm-10">
@@ -56,3 +63,4 @@
 <script src="https://cdn.bootcss.com/js-cookie/latest/js.cookie.js"></script>
 <script type="text/javascript" src="/js/upload.js" ></script>
 <script type="application/javascript" src="/js/common.js"></script>
+

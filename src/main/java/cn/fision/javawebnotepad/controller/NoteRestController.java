@@ -5,10 +5,7 @@ import cn.fision.javawebnotepad.bean.Note;
 import cn.fision.javawebnotepad.bean.User;
 import cn.fision.javawebnotepad.service.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -57,6 +54,18 @@ public class NoteRestController {
             return JsonResult.build(-1,"未登录或登录超时！");
         }else{
             JsonResult jsonResult = noteService.updateById(note.getId(),note.getTitle(),note.getContent(),new Date());
+            return jsonResult;
+        }
+    }
+
+    @DeleteMapping("/note/delete/{id}")
+    public JsonResult deleteById(@PathVariable(value = "id",required = true) int id, HttpServletRequest req){
+        User user = (User) req.getSession().getAttribute("user");
+        Note note = noteService.findById(id);
+        if (user==null||user.getId()<=0 || note==null||note.getId()<=0||user.getId()!=note.getUserId()){//不能刪除别人的
+            return JsonResult.build(-1,"非法操作！");
+        }else{
+            JsonResult jsonResult = noteService.deleteById(id);
             return jsonResult;
         }
     }

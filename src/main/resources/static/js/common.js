@@ -46,3 +46,35 @@ Validation.valiUserName = function(ac) {
 	//校验用户名
 	return myreg.test(ac);
 }
+
+deleteNote = function(e){
+	console.log($("#id").val());
+	swal({
+		buttons: true,
+		title: "请三思！确定删除吗？",
+		text: "你将无法恢复该操作！",
+		icon: "warning",
+		dangerMode: true
+	}).then(
+		function (value) {
+			if(value){
+				$.ajax({
+					type: 'delete',
+					url: "/note/delete/" + $("#id").val(),
+					success: function (data) {
+						if (data.status == 200) {
+							swal('删除成功');
+							window.location.reload();
+						} else {
+							swal(data.msg)
+						}
+					},
+					failed: function (data) {
+						swal("服务器异常，请稍后重试！")
+					}
+				})
+			}
+		}
+
+	);
+}
